@@ -1,0 +1,30 @@
+
+class Solution(object):
+    def getPer(self,res,n):
+        s2=[]
+        s=""
+        for i in range(n):
+            for j in range(n):
+                if res[i]==j:
+                    s+="Q"
+                else:
+                    s+="."
+            s2.append(s)
+            s=""
+        return s2
+    def solveNQueens(self, n):
+        """
+        :type n: int
+        :rtype: List[List[str]]
+        """
+        x=range(n)
+        res=[]
+        for y in permutations(x):
+            a=len(set(y[i]+i for i in y))
+            b=len(set(y[i]-i for i in y))
+            if a==b and a==n:
+                res.append(list(y))
+        finalRes=[]
+        for i in res:
+            finalRes.append(self.getPer(i,n))
+        return finalRes
